@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}PullEvri{% endblock %}
+{% block content %}
+
+<form action="/url" method="GET">
+
+<p>Enter the URL of an article, blogpost, product website, etc, to get a list
+of the entities in that article.  You can then click on an entity to get a list
+of articles containing that entity.</p>
+
+<p>This application is a quick hack built at <a
+href="london.hackcamp.org.uk">Hackcamp London</a> in June 2010, and pulls data
+from the API provided by <a href="http://www.evri.com/">Evri</a>.</p>
+
+<label for="urlinput">URL:</label>
+<input id="urlinput" type="text" name="url" value="{{url}}"/>
+<input type="submit" name="submit" value="Analyse"/>
+</form>
+
+{% endblock %}

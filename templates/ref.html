@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}PullEvri - {{ name }}{% endblock %}
+{% block content %}
+<h1>Articles contining the entity "{{ name }}"</h1>
+{% for item in refs %}
+<b>{{ item.title }}</b>
+{% if item.author %}
+<small>(<b>Source</b>: {{ item.author }})</small>
+{% endif %}
+{% if item.url %}
+<a href="/url?url={{item.url|urlencode}}">Analyse</a>
+<a href="{{item.url}}" target="_blank">Open</a>
+{% endif %}
+<br>
+{{ item.content }}
+
+{% if item.entities %}
+<br>
+<small>
+{% for entity in item.entities %}
+<a href="/ref?ref={{ entity.ref|urlencode }}&name={{ entity.name|urlencode }}">{{ entity.name }}</a>
+{% endfor %}
+</small>
+{% endif %}
+<hr>
+{% endfor %}
+<a href="/entity?ref={{ref|urlencode}}">This data in JSON format<a/><br>
+<small>This page uses data returned from the Evri API: <a href="http://www.evri.com/developer">http://www.evri.com/developer</a></small>
+{% endblock %}
